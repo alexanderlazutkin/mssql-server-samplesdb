@@ -23,11 +23,11 @@ services:
       FORCE_ATTACH_IF_MDF_EXISTS: "${FORCE_ATTACH_IF_MDF_EXISTS}"    
       INCLUDE_ALL_DATABASES: "${INCLUDE_ALL_DATABASES}"      
     volumes:
-      - ${LOCAL_MOUNTPOINT}:/var/opt/mssql/data
+      #- ${LOCAL_MOUNTPOINT}:/var/opt/mssql/data
       - ${SHARED_FOLDER}:/var/opt/mssql/shared_folder      
       - ./Backups:/var/opt/mssql/backup
     ports:
-      - "14330:1433"        
+      - "1433:1433"        
     cpu_count: 4
     mem_limit: 8Gb
     

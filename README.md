@@ -23,6 +23,8 @@
 
 # mssql-server-samplesdb
 
+This repo setup was adopted on Ubuntu 22.04 and sql server 2022 for local projects
+
 Easily deploy a Docker instance with SQL Server and all Microsoft Sample databases. Choose between stateless or stateful deployment for your SQL Server needs. Perfect for developers and DBAs looking for a quick and reliable database setup.
 
 
