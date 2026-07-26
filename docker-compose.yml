@@ -1,5 +1,3 @@
-version: '2.4'
-
 #  Enrique Catalá:
 #    Web:      https://www.clouddataninjas.com
 #    Linkedin: https://www.linkedin.com/in/enriquecatala/
@@ -23,7 +21,7 @@ services:
       FORCE_ATTACH_IF_MDF_EXISTS: "${FORCE_ATTACH_IF_MDF_EXISTS}"    
       INCLUDE_ALL_DATABASES: "${INCLUDE_ALL_DATABASES}"      
     volumes:
-      #- ${LOCAL_MOUNTPOINT}:/var/opt/mssql/data
+      - ${LOCAL_MOUNTPOINT}:/var/opt/mssql/data
       - ${SHARED_FOLDER}:/var/opt/mssql/shared_folder      
       - ./Backups:/var/opt/mssql/backup
     ports:

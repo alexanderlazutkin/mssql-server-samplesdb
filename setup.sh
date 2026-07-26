@@ -10,7 +10,7 @@
 export STATUS=1
 i=0
 
-while [[ $STATUS -ne 0 ]] && [[ $i -lt 60 ]]; doу
+while [[ $STATUS -ne 0 ]] && [[ $i -lt 60 ]]; do
 	i=$i+1
 	echo "*************************************************************************"
 	echo "Waiting for SQL Server to start (it will fail until port is opened)..."
@@ -37,7 +37,7 @@ file="/var/opt/mssql/data/Pubs.mdf"
 echo "INCLUDE_ALL_DATABASES: $INCLUDE_ALL_DATABASES" | tee -a ./config.log
 echo "FORCE_ATTACH_IF_MDF_EXISTS: $FORCE_ATTACH_IF_MDF_EXISTS" | tee -a ./config.log
 
-if [ ! -f "$file" ]
+if [ ! -f "$file" ];
 then
 	echo "*********** Restoring databases: WideWorldImporters, Adventureworks, tpcc ..." | tee -a ./config.log
 	/opt/mssql-tools18/bin/sqlcmd -No -C -S 127.0.0.1 -U sa -P $MSSQL_SA_PASSWORD -d master -i /var/opt/mssql/setup/setup.restore.sql
