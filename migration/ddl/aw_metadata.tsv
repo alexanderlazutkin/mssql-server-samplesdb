@@ -1,0 +1,384 @@
+AdventureWorksDWBuildVersion	-	Build version history of the AdventureWorksDW database	История версий сборки базы данных AdventureWorksDW
+DatabaseLog	-	Audit log of DDL changes captured by DDL triggers	Журнал аудита DDL-изменений, фиксируемый DDL-триггерами
+DimAccount	-	Finance chart of accounts dimension (parent-child hierarchy)	Измерение плана счетов (иерархия родитель-потомок)
+DimCurrency	-	Currency dimension	Измерение валют
+DimCustomer	-	Customer dimension: buyers in internet sales	Измерение клиентов: покупатели интернет-магазина
+DimDate	-	Date dimension with calendar and fiscal attributes, one row per day	Измерение дат с календарными и фискальными атрибутами, одна строка на день
+DimDepartmentGroup	-	Department groups dimension (parent-child hierarchy)	Измерение групп подразделений (иерархия родитель-потомок)
+DimEmployee	-	Employee dimension incl. sales persons and organization hierarchy	Измерение сотрудников, включая продавцов и оргиерархию
+DimGeography	-	Geography dimension (city, state, country) for customers and resellers	Географическое измерение (город, штат, страна) для клиентов и реселлеров
+DimOrganization	-	Organization dimension (parent-child hierarchy)	Измерение организаций (иерархия родитель-потомок)
+DimProduct	-	Product dimension	Измерение товаров
+DimProductCategory	-	Product category dimension	Измерение категорий товаров
+DimProductSubcategory	-	Product subcategory dimension	Измерение подкатегорий товаров
+DimPromotion	-	Sales promotion dimension	Измерение маркетинговых акций
+DimReseller	-	Reseller dimension	Измерение реселлеров (дилеров)
+DimSalesReason	-	Sales reason dimension: why the customer bought	Измерение причин покупки: почему клиент купил
+DimSalesTerritory	-	Sales territory dimension	Измерение территорий продаж
+DimScenario	-	Finance scenario dimension (actual, budget, forecast)	Измерение финансовых сценариев (факт, бюджет, прогноз)
+FactAdditionalInternationalProductDescription	-	Product descriptions in additional cultures, bridge many-to-many	Описания товаров на дополнительных языках, мост многие-ко-многим
+FactCallCenter	-	Call center daily operations fact	Факт ежедневной работы колл-центра
+FactCurrencyRate	-	Daily currency exchange rates fact	Факт ежедневных курсов валют
+FactFinance	-	Finance fact: amounts by account, organization and scenario	Факт финансов: суммы по счёту, организации и сценарию
+FactInternetSales	-	Internet sales fact, one row per sales order line	Факт интернет-продаж, строка на позицию заказа
+FactInternetSalesReason	-	Bridge between internet sales lines and sales reasons	Мост между позициями интернет-заказов и причинами покупки
+FactProductInventory	-	Daily product inventory balances fact (snapshot)	Факт ежедневных остатков товаров (снапшот)
+FactResellerSales	-	Reseller sales fact, one row per sales order line	Факт продаж реселлерам, строка на позицию заказа
+FactSalesQuota	-	Sales quotas fact by employee and quarter	Факт квот продаж по сотрудникам и кварталам
+FactSurveyResponse	-	Customer survey responses fact	Факт ответов клиентов на опросы
+NewFactCurrencyRate	-	Staging table for loading currency rates	Промежуточная таблица для загрузки курсов валют
+ProspectiveBuyer	-	Prospective bike buyers for a targeted marketing campaign	Потенциальные покупатели велосипедов для целевой маркетинговой кампании
+DimAccount	AccountKey	Surrogate primary key of the account	Суррогатный первичный ключ счёта
+DimAccount	ParentAccountKey	Key of the parent account (rollup hierarchy)	Ключ родительского счёта (иерархия агрегации)
+DimAccount	AccountCodeAlternateKey	Natural account code (alternate key, e.g. 10, 20, 30)	Натуральный код счёта (альтернативный ключ, напр. 10, 20, 30)
+DimAccount	ParentAccountCodeAlternateKey	Natural code of the parent account	Натуральный код родительского счёта
+DimAccount	AccountDescription	Business description of the account	Деловое описание счёта
+DimAccount	AccountType	Account type: Income, Expense, Revenue, etc.	Тип счёта: доход, расход, выручка и т.п.
+DimAccount	Operator	Aggregation operator for parent-child rollups unary operator	Оператор агрегации для свёртки иерархии (унарный оператор)
+DimAccount	CustomMembers	MDX custom member formulas	Пользовательские MDX-формулы элементов
+DimAccount	ValueType	Whether amounts are currency or non-currency	Валюта или не валютная величина сумм
+DimAccount	CustomMemberOptions	Additional custom member options	Дополнительные параметры пользовательских элементов
+DimCurrency	CurrencyKey	Surrogate primary key of the currency	Суррогатный первичный ключ валюты
+DimCurrency	CurrencyAlternateKey	ISO currency code (alternate key), e.g. USD, EUR	ISO-код валюты (альтернативный ключ), напр. USD, EUR
+DimCurrency	CurrencyName	Full currency name	Полное название валюты
+DimScenario	ScenarioKey	Surrogate primary key of the scenario	Суррогатный первичный ключ сценария
+DimScenario	ScenarioName	Scenario name: Actual, Budget, Forecast	Название сценария: факт, бюджет, прогноз
+DimDepartmentGroup	DepartmentGroupKey	Surrogate primary key of the department group	Суррогатный первичный ключ группы подразделений
+DimDepartmentGroup	ParentDepartmentGroupKey	Key of the parent department group	Ключ родительской группы подразделений
+DimDepartmentGroup	DepartmentGroupName	Name of the department group	Название группы подразделений
+DimOrganization	OrganizationKey	Surrogate primary key of the organization	Суррогатный первичный ключ организации
+DimOrganization	ParentOrganizationKey	Key of the parent organization	Ключ родительской организации
+DimOrganization	PercentageOfOwnership	Share of ownership in percent	Доля владения в процентах
+DimOrganization	OrganizationName	Organization name	Название организации
+DimOrganization	CurrencyKey	Foreign key to DimCurrency: reporting currency	Внешний ключ на DimCurrency: валюта отчётности
+DimProductCategory	ProductCategoryKey	Surrogate primary key of the product category	Суррогатный первичный ключ категории товаров
+DimProductCategory	ProductCategoryAlternateKey	Natural category code (alternate key)	Натуральный код категории (альтернативный ключ)
+DimProductCategory	EnglishProductCategoryName	Category name in English	Название категории на английском
+DimProductCategory	SpanishProductCategoryName	Category name in Spanish	Название категории на испанском
+DimProductCategory	FrenchProductCategoryName	Category name in French	Название категории на французском
+DimProductSubcategory	ProductSubcategoryKey	Surrogate primary key of the product subcategory	Суррогатный первичный ключ подкатегории товаров
+DimProductSubcategory	ProductSubcategoryAlternateKey	Natural subcategory code (alternate key)	Натуральный код подкатегории (альтернативный ключ)
+DimProductSubcategory	EnglishProductSubcategoryName	Subcategory name in English	Название подкатегории на английском
+DimProductSubcategory	SpanishProductSubcategoryName	Subcategory name in Spanish	Название подкатегории на испанском
+DimProductSubcategory	FrenchProductSubcategoryName	Subcategory name in French	Название подкатегории на французском
+DimProductSubcategory	ProductCategoryKey	Foreign key to DimProductCategory	Внешний ключ на DimProductCategory
+DimSalesReason	SalesReasonKey	Surrogate primary key of the sales reason	Суррогатный первичный ключ причины покупки
+DimSalesReason	SalesReasonAlternateKey	Natural sales reason code (alternate key)	Натуральный код причины покупки (альтернативный ключ)
+DimSalesReason	SalesReasonName	Sales reason name, e.g. Price, Quality	Название причины покупки, напр. цена, качество
+DimSalesReason	SalesReasonReasonType	Reason type: Marketing, Other, Price, Quality	Тип причины: маркетинг, прочее, цена, качество
+DimSalesTerritory	SalesTerritoryKey	Surrogate primary key of the sales territory	Суррогатный первичный ключ территории продаж
+DimSalesTerritory	SalesTerritoryAlternateKey	Natural territory code (alternate key)	Натуральный код территории (альтернативный ключ)
+DimSalesTerritory	SalesTerritoryRegion	Sales region name, e.g. Northwest, Germany	Название региона продаж, напр. Северо-Запад, Германия
+DimSalesTerritory	SalesTerritoryCountry	Country of the sales territory	Страна территории продаж
+DimSalesTerritory	SalesTerritoryGroup	Territory group: Europe, North America, Pacific, NA	Группа территорий: Европа, Северная Америка, Тихий океан
+DimSalesTerritory	SalesTerritoryImage	Territory map image (hex-encoded binary)	Изображение карты территории (бинарник в hex-кодировке)
+DimGeography	GeographyKey	Surrogate primary key of the geography row	Суррогатный первичный ключ географической записи
+DimGeography	City	City name	Название города
+DimGeography	StateProvinceCode	Code of state or province	Код штата или провинции
+DimGeography	StateProvinceName	Name of state or province	Название штата или провинции
+DimGeography	CountryRegionCode	ISO country code	ISO-код страны
+DimGeography	EnglishCountryRegionName	Country name in English	Название страны на английском
+DimGeography	SpanishCountryRegionName	Country name in Spanish	Название страны на испанском
+DimGeography	FrenchCountryRegionName	Country name in French	Название страны на французском
+DimGeography	PostalCode	Postal (ZIP) code	Почтовый индекс
+DimGeography	SalesTerritoryKey	Foreign key to DimSalesTerritory	Внешний ключ на DimSalesTerritory
+DimGeography	IpAddressLocator	IP address geolocation hint	Подсказка геолокации по IP-адресу
+DimCustomer	CustomerKey	Surrogate primary key of the customer	Суррогатный первичный ключ клиента
+DimCustomer	GeographyKey	Foreign key to DimGeography	Внешний ключ на DimGeography
+DimCustomer	CustomerAlternateKey	Natural customer identifier (alternate key) AW00011000	Натуральный идентификатор клиента (альтернативный ключ) AW00011000
+DimCustomer	Title	Name title: Mr., Ms., etc.	Обращение: Mr., Ms. и т.п.
+DimCustomer	FirstName	First name	Имя
+DimCustomer	MiddleName	Middle name or initial	Отчество или инициал
+DimCustomer	LastName	Last name	Фамилия
+DimCustomer	NameStyle	True if the name is in Eastern (reversed) style	Истина, если имя в восточном (обратном) порядке
+DimCustomer	BirthDate	Date of birth	Дата рождения
+DimCustomer	MaritalStatus	Marital status: M = married, S = single	Семейное положение: M = женат/замужем, S = холост
+DimCustomer	Suffix	Name suffix: Jr., Sr., etc.	Суффикс имени: Jr., Sr. и т.п.
+DimCustomer	Gender	Gender: M = male, F = female	Пол: M = мужской, F = женский
+DimCustomer	EmailAddress	Email address	Адрес электронной почты
+DimCustomer	YearlyIncome	Annual household income	Годовой доход домохозяйства
+DimCustomer	TotalChildren	Total number of children	Общее число детей
+DimCustomer	NumberChildrenAtHome	Number of children living at home	Число детей, живущих дома
+DimCustomer	EnglishEducation	Education level in English	Уровень образования на английском
+DimCustomer	SpanishEducation	Education level in Spanish	Уровень образования на испанском
+DimCustomer	FrenchEducation	Education level in French	Уровень образования на французском
+DimCustomer	EnglishOccupation	Occupation in English	Род занятий на английском
+DimCustomer	SpanishOccupation	Occupation in Spanish	Род занятий на испанском
+DimCustomer	FrenchOccupation	Occupation in French	Род занятий на французском
+DimCustomer	HouseOwnerFlag	Homeowner flag: 1 = owns home	Признак владения домом: 1 = собственник
+DimCustomer	NumberCarsOwned	Number of cars owned	Число автомобилей в собственности
+DimCustomer	AddressLine1	First address line	Первая строка адреса
+DimCustomer	AddressLine2	Second address line	Вторая строка адреса
+DimCustomer	Phone	Phone number	Номер телефона
+DimCustomer	DateFirstPurchase	Date of first purchase	Дата первой покупки
+DimCustomer	CommuteDistance	Commute distance range, e.g. 1-2 Miles	Диапазон дистанции до работы, напр. 1-2 мили
+DimDate	DateKey	Surrogate key: date as YYYYMMDD integer	Суррогатный ключ: дата в виде целого ГГГГММДД
+DimDate	FullDateAlternateKey	The actual date (alternate key)	Собственно дата (альтернативный ключ)
+DimDate	DayNumberOfWeek	Day of week number: 1 = Sunday	Номер дня недели: 1 = воскресенье
+DimDate	EnglishDayNameOfWeek	Day name in English	Название дня недели на английском
+DimDate	SpanishDayNameOfWeek	Day name in Spanish	Название дня недели на испанском
+DimDate	FrenchDayNameOfWeek	Day name in French	Название дня недели на французском
+DimDate	DayNumberOfMonth	Day number within the month	Номер дня в месяце
+DimDate	DayNumberOfYear	Day number within the year	Номер дня в году
+DimDate	WeekNumberOfYear	Week number within the year	Номер недели в году
+DimDate	EnglishMonthName	Month name in English	Название месяца на английском
+DimDate	SpanishMonthName	Month name in Spanish	Название месяца на испанском
+DimDate	FrenchMonthName	Month name in French	Название месяца на французском
+DimDate	MonthNumberOfYear	Month number within the year: 1-12	Номер месяца в году: 1-12
+DimDate	CalendarQuarter	Calendar quarter: 1-4	Календарный квартал: 1-4
+DimDate	CalendarYear	Calendar year	Календарный год
+DimDate	CalendarSemester	Calendar semester: 1-2	Календарное полугодие: 1-2
+DimDate	FiscalQuarter	Fiscal quarter (fiscal year starts July 1)	Фискальный квартал (фискальный год с 1 июля)
+DimDate	FiscalYear	Fiscal year	Фискальный год
+DimDate	FiscalSemester	Fiscal semester: 1-2	Фискальное полугодие: 1-2
+DimEmployee	EmployeeKey	Surrogate primary key of the employee	Суррогатный первичный ключ сотрудника
+DimEmployee	ParentEmployeeKey	Key of the manager (parent) employee	Ключ руководителя (родительского сотрудника)
+DimEmployee	EmployeeNationalIDAlternateKey	National ID number (alternate key)	Номер национального удостоверения личности (альтернативный ключ)
+DimEmployee	ParentEmployeeNationalIDAlternateKey	National ID of the manager	Национальный ID руководителя
+DimEmployee	SalesTerritoryKey	Foreign key to DimSalesTerritory	Внешний ключ на DimSalesTerritory
+DimEmployee	FirstName	First name	Имя
+DimEmployee	LastName	Last name	Фамилия
+DimEmployee	MiddleName	Middle name or initial	Отчество или инициал
+DimEmployee	NameStyle	True if the name is in Eastern (reversed) style	Истина, если имя в восточном (обратном) порядке
+DimEmployee	Title	Job title	Должность
+DimEmployee	HireDate	Hire date	Дата приёма на работу
+DimEmployee	BirthDate	Date of birth	Дата рождения
+DimEmployee	LoginID	Domain login: adventure-works\login	Доменный логин: adventure-works\логин
+DimEmployee	EmailAddress	Email address	Адрес электронной почты
+DimEmployee	Phone	Phone number	Номер телефона
+DimEmployee	MaritalStatus	Marital status: M, S	Семейное положение: M, S
+DimEmployee	EmergencyContactName	Emergency contact person	Контактное лицо для экстренной связи
+DimEmployee	EmergencyContactPhone	Emergency contact phone	Телефон для экстренной связи
+DimEmployee	SalariedFlag	True if salaried employee	Истина для сотрудника на окладе
+DimEmployee	Gender	Gender: M, F	Пол: M, F
+DimEmployee	PayFrequency	Pay frequency: 1 = monthly, 2 = biweekly	Периодичность выплат: 1 = ежемесячно, 2 = раз в две недели
+DimEmployee	BaseRate	Base hourly or salary rate	Базовая ставка (почасовая или оклад)
+DimEmployee	VacationHours	Accrued vacation hours	Накопленные часы отпуска
+DimEmployee	SickLeaveHours	Accrued sick leave hours	Накопленные часы больничных
+DimEmployee	CurrentFlag	True if currently employed	Истина, если работает в настоящее время
+DimEmployee	SalesPersonFlag	True if the employee is a sales person	Истина, если сотрудник — продавец
+DimEmployee	DepartmentName	Department name (SCD2 attribute)	Название подразделения (SCD2-атрибут)
+DimEmployee	StartDate	Valid-from date of the SCD2 version	Дата начала действия SCD2-версии записи
+DimEmployee	EndDate	Valid-to date of the SCD2 version, NULL = current	Дата окончания SCD2-версии, NULL = текущая
+DimEmployee	Status	Row status for SCD2 handling	Статус строки для обработки SCD2
+DimEmployee	EmployeePhoto	Employee photo (hex-encoded binary)	Фото сотрудника (бинарник в hex-кодировке)
+DimProduct	ProductKey	Surrogate primary key of the product	Суррогатный первичный ключ товара
+DimProduct	ProductAlternateKey	Natural product code (alternate key), e.g. BK-R93R-62	Натуральный код товара (альтернативный ключ), напр. BK-R93R-62
+DimProduct	ProductSubcategoryKey	Foreign key to DimProductSubcategory	Внешний ключ на DimProductSubcategory
+DimProduct	WeightUnitMeasureCode	Unit of weight: LB = pounds, KG = kilograms	Единица веса: LB = фунты, KG = килограммы
+DimProduct	SizeUnitMeasureCode	Unit of size: CM = centimeters, IN = inches	Единица размера: CM = сантиметры, IN = дюймы
+DimProduct	EnglishProductName	Product name in English	Название товара на английском
+DimProduct	SpanishProductName	Product name in Spanish	Название товара на испанском
+DimProduct	FrenchProductName	Product name in French	Название товара на французском
+DimProduct	StandardCost	Standard manufacturing cost	Стандартная себестоимость производства
+DimProduct	FinishedGoodsFlag	True if salable finished good	Истина, если готовый товар для продажи
+DimProduct	Color	Product color, NA if not applicable	Цвет товара, NA если не применим
+DimProduct	SafetyStockLevel	Minimum stock threshold	Минимальный порог запаса
+DimProduct	ReorderPoint	Inventory level that triggers reorder	Уровень запаса, при котором делается дозаказ
+DimProduct	ListPrice	Retail list price	Розничная цена по прайс-листу
+DimProduct	Size	Product size	Размер товара
+DimProduct	SizeRange	Size bucket, e.g. 40-50 CM	Диапазон размера, напр. 40-50 CM
+DimProduct	Weight	Product weight	Вес товара
+DimProduct	DaysToManufacture	Days required to manufacture	Дней на производство
+DimProduct	ProductLine	Product line: R = road, M = mountain, S = standard, T = touring	Линейка: R = шоссейные, M = горные, S = стандарт, T = туристические
+DimProduct	DealerPrice	Dealer (reseller) price	Дилерская цена (для реселлеров)
+DimProduct	Class	Quality class: H = high, M = medium, L = low	Класс качества: H = высокий, M = средний, L = низкий
+DimProduct	Style	Style: W = womens, M = mens, U = universal	Стиль: W = женский, M = мужской, U = унисекс
+DimProduct	ModelName	Product model name	Название модели товара
+DimProduct	LargePhoto	Large product photo (hex-encoded binary)	Крупное фото товара (бинарник в hex-кодировке)
+DimProduct	EnglishDescription	Product description in English	Описание товара на английском
+DimProduct	FrenchDescription	Product description in French	Описание товара на французском
+DimProduct	ChineseDescription	Product description in Chinese	Описание товара на китайском
+DimProduct	ArabicDescription	Product description in Arabic	Описание товара на арабском
+DimProduct	HebrewDescription	Product description in Hebrew	Описание товара на иврите
+DimProduct	ThaiDescription	Product description in Thai	Описание товара на тайском
+DimProduct	GermanDescription	Product description in German	Описание товара на немецком
+DimProduct	JapaneseDescription	Product description in Japanese	Описание товара на японском
+DimProduct	TurkishDescription	Product description in Turkish	Описание товара на турецком
+DimProduct	StartDate	Valid-from date of the SCD2 version	Дата начала действия SCD2-версии записи
+DimProduct	EndDate	Valid-to date of the SCD2 version, NULL = current	Дата окончания SCD2-версии, NULL = текущая
+DimProduct	Status	Row status for SCD2 handling	Статус строки для обработки SCD2
+DimReseller	ResellerKey	Surrogate primary key of the reseller	Суррогатный первичный ключ реселлера
+DimReseller	GeographyKey	Foreign key to DimGeography	Внешний ключ на DimGeography
+DimReseller	ResellerAlternateKey	Natural reseller code (alternate key)	Натуральный код реселлера (альтернативный ключ)
+DimReseller	Phone	Phone number	Номер телефона
+DimReseller	BusinessType	Business type: Value Added Reseller, Warehouse, etc.	Тип бизнеса: добавленная стоимость, склад и т.п.
+DimReseller	ResellerName	Reseller company name	Название компании-реселлера
+DimReseller	NumberEmployees	Number of employees	Численность сотрудников
+DimReseller	OrderFrequency	Order frequency: Annual, Biannual, Monthly, Quarterly	Частота заказов: годовая, полугодовая, месячная, квартальная
+DimReseller	OrderMonth	Preferred order month (1-12)	Предпочтительный месяц заказа (1-12)
+DimReseller	FirstOrderYear	Year of first order	Год первого заказа
+DimReseller	LastOrderYear	Year of last order	Год последнего заказа
+DimReseller	ProductLine	Product line focus of the reseller	Приоритетная товарная линейка реселлера
+DimReseller	AddressLine1	First address line	Первая строка адреса
+DimReseller	AddressLine2	Second address line	Вторая строка адреса
+DimReseller	AnnualSales	Annual sales of the reseller	Годовые продажи реселлера
+DimReseller	BankName	Bank of the reseller	Банк реселлера
+DimReseller	MinPaymentType	Minimum payment type code	Код минимального типа платежа
+DimReseller	MinPaymentAmount	Minimum payment amount	Минимальная сумма платежа
+DimReseller	AnnualRevenue	Annual revenue of the reseller	Годовая выручка реселлера
+DimReseller	YearOpened	Year the reseller business opened	Год открытия бизнеса реселлера
+DatabaseLog	DatabaseLogID	Surrogate primary key of the log entry	Суррогатный первичный ключ записи журнала
+DatabaseLog	PostTime	Time of the DDL event	Время DDL-события
+DatabaseLog	DatabaseUser	User who executed the statement	Пользователь, выполнивший оператор
+DatabaseLog	Event	Event type: CREATE_TABLE, DROP_INDEX, etc.	Тип события: CREATE_TABLE, DROP_INDEX и т.п.
+DatabaseLog	Schema	Schema of the affected object	Схема затронутого объекта
+DatabaseLog	Object	Name of the affected object	Имя затронутого объекта
+DatabaseLog	TSQL	The executed T-SQL statement (CR/LF replaced by space)	Выполненный оператор T-SQL (CR/LF заменены на пробел)
+DatabaseLog	XmlEvent	Event details in XML (CR/LF replaced by space)	Детали события в XML (CR/LF заменены на пробел)
+AdventureWorksDWBuildVersion	DBVersion	Database version string, e.g. 15.0.2000.8	Строка версии базы данных, напр. 15.0.2000.8
+AdventureWorksDWBuildVersion	VersionDate	Date of the build version	Дата версии сборки
+ProspectiveBuyer	ProspectiveBuyerKey	Surrogate primary key of the prospective buyer	Суррогатный первичный ключ потенциального покупателя
+ProspectiveBuyer	ProspectAlternateKey	Natural prospect identifier (alternate key)	Натуральный идентификатор проспекта (альтернативный ключ)
+ProspectiveBuyer	FirstName	First name	Имя
+ProspectiveBuyer	MiddleName	Middle name or initial	Отчество или инициал
+ProspectiveBuyer	LastName	Last name	Фамилия
+ProspectiveBuyer	BirthDate	Date of birth	Дата рождения
+ProspectiveBuyer	MaritalStatus	Marital status: M, S	Семейное положение: M, S
+ProspectiveBuyer	Gender	Gender: M, F	Пол: M, F
+ProspectiveBuyer	EmailAddress	Email address	Адрес электронной почты
+ProspectiveBuyer	YearlyIncome	Annual household income	Годовой доход домохозяйства
+ProspectiveBuyer	TotalChildren	Total number of children	Общее число детей
+ProspectiveBuyer	NumberChildrenAtHome	Number of children living at home	Число детей, живущих дома
+ProspectiveBuyer	Education	Education level	Уровень образования
+ProspectiveBuyer	Occupation	Occupation	Род занятий
+ProspectiveBuyer	HouseOwnerFlag	Homeowner flag: 1 = owns home	Признак владения домом: 1 = собственник
+ProspectiveBuyer	NumberCarsOwned	Number of cars owned	Число автомобилей в собственности
+ProspectiveBuyer	AddressLine1	First address line	Первая строка адреса
+ProspectiveBuyer	AddressLine2	Second address line	Вторая строка адреса
+ProspectiveBuyer	City	City of residence	Город проживания
+ProspectiveBuyer	StateProvinceCode	Code of state or province	Код штата или провинции
+ProspectiveBuyer	PostalCode	Postal (ZIP) code	Почтовый индекс
+ProspectiveBuyer	Phone	Phone number	Номер телефона
+ProspectiveBuyer	Salutation	Salutation for mailings	Обращение для рассылок
+ProspectiveBuyer	Unknown	Technical column of the mining structure (unused attribute)	Техническая колонка майнинг-структуры (неиспользуемый атрибут)
+FactInternetSales	ProductKey	Foreign key to DimProduct	Внешний ключ на DimProduct
+FactInternetSales	OrderDateKey	Foreign key to DimDate: order date	Внешний ключ на DimDate: дата заказа
+FactInternetSales	DueDateKey	Foreign key to DimDate: due date	Внешний ключ на DimDate: срок оплаты
+FactInternetSales	ShipDateKey	Foreign key to DimDate: ship date	Внешний ключ на DimDate: дата отгрузки
+FactInternetSales	CustomerKey	Foreign key to DimCustomer	Внешний ключ на DimCustomer
+FactInternetSales	PromotionKey	Foreign key to DimPromotion	Внешний ключ на DimPromotion
+FactInternetSales	CurrencyKey	Foreign key to DimCurrency	Внешний ключ на DimCurrency
+FactInternetSales	SalesTerritoryKey	Foreign key to DimSalesTerritory	Внешний ключ на DimSalesTerritory
+FactInternetSales	SalesOrderNumber	Sales order number, e.g. SO43697	Номер заказа на продажу, напр. SO43697
+FactInternetSales	SalesOrderLineNumber	Line number within the sales order	Номер позиции внутри заказа
+FactInternetSales	RevisionNumber	Order revision number	Номер ревизии заказа
+FactInternetSales	OrderQuantity	Quantity ordered	Заказанное количество
+FactInternetSales	UnitPrice	Unit price after discounts	Цена за единицу с учётом скидок
+FactInternetSales	ExtendedAmount	Line amount: UnitPrice x OrderQuantity	Сумма позиции: цена за единицу x количество
+FactInternetSales	UnitPriceDiscountPct	Line discount percentage	Процент скидки по позиции
+FactInternetSales	DiscountAmount	Discount amount	Сумма скидки
+FactInternetSales	ProductStandardCost	Standard cost of the product at sale time	Стандартная себестоимость товара на момент продажи
+FactInternetSales	TotalProductCost	Total cost: ProductStandardCost x OrderQuantity	Итоговая себестоимость: стандартная себестоимость x количество
+FactInternetSales	SalesAmount	Sales line amount (net)	Сумма продажи по позиции (нетто)
+FactInternetSales	TaxAmt	Tax amount	Сумма налога
+FactInternetSales	Freight	Freight (shipping) charge	Стоимость доставки
+FactInternetSales	CarrierTrackingNumber	Carrier tracking number	Трек-номер перевозчика
+FactInternetSales	CustomerPONumber	Customer purchase order number	Номер заказа на закупку у клиента
+FactInternetSales	OrderDate	Order date as datetime (denormalized)	Дата заказа в виде datetime (денормализовано)
+FactInternetSales	DueDate	Due date as datetime (denormalized)	Срок оплаты в виде datetime (денормализовано)
+FactInternetSales	ShipDate	Ship date as datetime (denormalized)	Дата отгрузки в виде datetime (денормализовано)
+FactInternetSalesReason	SalesOrderNumber	Foreign key to FactInternetSales: order number	Внешний ключ на FactInternetSales: номер заказа
+FactInternetSalesReason	SalesOrderLineNumber	Foreign key to FactInternetSales: line number	Внешний ключ на FactInternetSales: номер позиции
+FactInternetSalesReason	SalesReasonKey	Foreign key to DimSalesReason	Внешний ключ на DimSalesReason
+FactResellerSales	ProductKey	Foreign key to DimProduct	Внешний ключ на DimProduct
+FactResellerSales	OrderDateKey	Foreign key to DimDate: order date	Внешний ключ на DimDate: дата заказа
+FactResellerSales	DueDateKey	Foreign key to DimDate: due date	Внешний ключ на DimDate: срок оплаты
+FactResellerSales	ShipDateKey	Foreign key to DimDate: ship date	Внешний ключ на DimDate: дата отгрузки
+FactResellerSales	ResellerKey	Foreign key to DimReseller	Внешний ключ на DimReseller
+FactResellerSales	EmployeeKey	Foreign key to DimEmployee: sales person	Внешний ключ на DimEmployee: продавец
+FactResellerSales	PromotionKey	Foreign key to DimPromotion	Внешний ключ на DimPromotion
+FactResellerSales	CurrencyKey	Foreign key to DimCurrency	Внешний ключ на DimCurrency
+FactResellerSales	SalesTerritoryKey	Foreign key to DimSalesTerritory	Внешний ключ на DimSalesTerritory
+FactResellerSales	SalesOrderNumber	Sales order number, e.g. SO43697	Номер заказа на продажу, напр. SO43697
+FactResellerSales	SalesOrderLineNumber	Line number within the sales order	Номер позиции внутри заказа
+FactResellerSales	RevisionNumber	Order revision number	Номер ревизии заказа
+FactResellerSales	OrderQuantity	Quantity ordered	Заказанное количество
+FactResellerSales	UnitPrice	Unit price after discounts	Цена за единицу с учётом скидок
+FactResellerSales	ExtendedAmount	Line amount: UnitPrice x OrderQuantity	Сумма позиции: цена за единицу x количество
+FactResellerSales	UnitPriceDiscountPct	Line discount percentage	Процент скидки по позиции
+FactResellerSales	DiscountAmount	Discount amount	Сумма скидки
+FactResellerSales	ProductStandardCost	Standard cost of the product at sale time	Стандартная себестоимость товара на момент продажи
+FactResellerSales	TotalProductCost	Total cost: ProductStandardCost x OrderQuantity	Итоговая себестоимость: стандартная себестоимость x количество
+FactResellerSales	SalesAmount	Sales line amount (net)	Сумма продажи по позиции (нетто)
+FactResellerSales	TaxAmt	Tax amount	Сумма налога
+FactResellerSales	Freight	Freight (shipping) charge	Стоимость доставки
+FactResellerSales	CarrierTrackingNumber	Carrier tracking number	Трек-номер перевозчика
+FactResellerSales	CustomerPONumber	Customer purchase order number	Номер заказа на закупку у клиента
+FactResellerSales	OrderDate	Order date as datetime (denormalized)	Дата заказа в виде datetime (денормализовано)
+FactResellerSales	DueDate	Due date as datetime (denormalized)	Срок оплаты в виде datetime (денормализовано)
+FactResellerSales	ShipDate	Ship date as datetime (denormalized)	Дата отгрузки в виде datetime (денормализовано)
+FactProductInventory	ProductKey	Foreign key to DimProduct	Внешний ключ на DimProduct
+FactProductInventory	DateKey	Foreign key to DimDate: snapshot date	Внешний ключ на DimDate: дата снапшота
+FactProductInventory	MovementDate	Date of the stock movement	Дата движения запаса
+FactProductInventory	UnitCost	Unit cost of the product	Себестоимость единицы товара
+FactProductInventory	UnitsIn	Units received into stock	Принятые на склад единицы
+FactProductInventory	UnitsOut	Units issued from stock	Отпущенные со склада единицы
+FactProductInventory	UnitsBalance	Closing balance for the day	Остаток на конец дня
+FactCurrencyRate	CurrencyKey	Foreign key to DimCurrency	Внешний ключ на DimCurrency
+FactCurrencyRate	DateKey	Foreign key to DimDate: rate date	Внешний ключ на DimDate: дата курса
+FactCurrencyRate	AverageRate	Average exchange rate for the day	Средний курс за день
+FactCurrencyRate	EndOfDayRate	End-of-day exchange rate	Курс на конец дня
+FactCurrencyRate	Date	Rate date as datetime (denormalized)	Дата курса в виде datetime (денормализовано)
+NewFactCurrencyRate	AverageRate	Average exchange rate (staging value)	Средний курс (значение стадии загрузки)
+NewFactCurrencyRate	CurrencyID	Currency code from the OLTP source	Код валюты из OLTP-источника
+NewFactCurrencyRate	CurrencyDate	Rate date (staging value)	Дата курса (значение стадии загрузки)
+NewFactCurrencyRate	EndOfDayRate	End-of-day rate (staging value)	Курс на конец дня (значение стадии загрузки)
+NewFactCurrencyRate	CurrencyKey	Foreign key to DimCurrency (nullable in staging)	Внешний ключ на DimCurrency (в staging может быть NULL)
+NewFactCurrencyRate	DateKey	Foreign key to DimDate (nullable in staging)	Внешний ключ на DimDate (в staging может быть NULL)
+FactFinance	FinanceKey	Surrogate primary key of the finance row	Суррогатный первичный ключ финансовой записи
+FactFinance	DateKey	Foreign key to DimDate	Внешний ключ на DimDate
+FactFinance	OrganizationKey	Foreign key to DimOrganization	Внешний ключ на DimOrganization
+FactFinance	DepartmentGroupKey	Foreign key to DimDepartmentGroup	Внешний ключ на DimDepartmentGroup
+FactFinance	ScenarioKey	Foreign key to DimScenario	Внешний ключ на DimScenario
+FactFinance	AccountKey	Foreign key to DimAccount	Внешний ключ на DimAccount
+FactFinance	Amount	Finance amount	Финансовая сумма
+FactFinance	Date	Row date as datetime (denormalized)	Дата строки в виде datetime (денормализовано)
+FactSalesQuota	SalesQuotaKey	Surrogate primary key of the quota row	Суррогатный первичный ключ записи квоты
+FactSalesQuota	EmployeeKey	Foreign key to DimEmployee: sales person	Внешний ключ на DimEmployee: продавец
+FactSalesQuota	DateKey	Foreign key to DimDate	Внешний ключ на DimDate
+FactSalesQuota	CalendarYear	Quota calendar year	Календарный год квоты
+FactSalesQuota	CalendarQuarter	Quota calendar quarter: 1-4	Календарный квартал квоты: 1-4
+FactSalesQuota	SalesAmountQuota	Sales quota amount	Сумма квоты продаж
+FactSalesQuota	Date	Row date as datetime (denormalized)	Дата строки в виде datetime (денормализовано)
+FactCallCenter	FactCallCenterID	Surrogate primary key of the fact row	Суррогатный первичный ключ строки факта
+FactCallCenter	DateKey	Foreign key to DimDate: operations date	Внешний ключ на DimDate: дата опердня
+FactCallCenter	WageType	Wage type: holiday, weekday, weekend	Тип оплаты: праздник, будний день, выходной
+FactCallCenter	Shift	Shift: AM, PM1, PM2	Смена: AM, PM1, PM2
+FactCallCenter	LevelOneOperators	Number of level-1 operators	Число операторов 1-й линии
+FactCallCenter	LevelTwoOperators	Number of level-2 operators	Число операторов 2-й линии
+FactCallCenter	TotalOperators	Total operators on shift	Всего операторов на смене
+FactCallCenter	Calls	Number of calls received	Число принятых звонков
+FactCallCenter	AutomaticResponses	Calls handled automatically (IVR)	Звонки, обработанные автоматически (IVR)
+FactCallCenter	Orders	Orders placed during the shift	Заказы, оформленные за смену
+FactCallCenter	IssuesRaised	Issues raised by customers	Число проблем, поднятых клиентами
+FactCallCenter	AverageTimePerIssue	Average handling time per issue, seconds	Среднее время обработки проблемы, секунды
+FactCallCenter	ServiceGrade	Service level: share of calls under 2 minutes (X-abandon rate)	Уровень сервиса: доля звонков короче 2 минут
+FactCallCenter	Date	Operations date as datetime (denormalized)	Дата опердня в виде datetime (денормализовано)
+FactSurveyResponse	SurveyResponseKey	Surrogate primary key of the survey response	Суррогатный первичный ключ ответа на опрос
+FactSurveyResponse	DateKey	Foreign key to DimDate	Внешний ключ на DimDate
+FactSurveyResponse	CustomerKey	Foreign key to DimCustomer	Внешний ключ на DimCustomer
+FactSurveyResponse	ProductCategoryKey	Foreign key to DimProductCategory	Внешний ключ на DimProductCategory
+FactSurveyResponse	EnglishProductCategoryName	Product category name (denormalized)	Название категории товара (денормализовано)
+FactSurveyResponse	ProductSubcategoryKey	Foreign key to DimProductSubcategory	Внешний ключ на DimProductSubcategory
+FactSurveyResponse	EnglishProductSubcategoryName	Product subcategory name (denormalized)	Название подкатегории товара (денормализовано)
+FactSurveyResponse	Date	Response date as datetime (denormalized)	Дата ответа в виде datetime (денормализовано)
+FactAdditionalInternationalProductDescription	ProductKey	Foreign key to DimProduct	Внешний ключ на DimProduct
+FactAdditionalInternationalProductDescription	CultureName	Culture code, e.g. ru-RU, zh-CN	Код культуры (языка), напр. ru-RU, zh-CN
+FactAdditionalInternationalProductDescription	ProductDescription	Product description in the culture language	Описание товара на языке культуры
+DimPromotion	PromotionKey	Surrogate primary key of the promotion	Суррогатный первичный ключ акции
+DimPromotion	PromotionAlternateKey	Natural promotion code (alternate key)	Натуральный код акции (альтернативный ключ)
+DimPromotion	EnglishPromotionName	Promotion name in English	Название акции на английском
+DimPromotion	SpanishPromotionName	Promotion name in Spanish	Название акции на испанском
+DimPromotion	FrenchPromotionName	Promotion name in French	Название акции на французском
+DimPromotion	DiscountPct	Discount percentage of the promotion	Процент скидки акции
+DimPromotion	EnglishPromotionType	Promotion type in English: Seasonal Discount, Volume Discount, New Product	Тип акции на английском: сезонная скидка, объёмная скидка, новый товар
+DimPromotion	SpanishPromotionType	Promotion type in Spanish	Тип акции на испанском
+DimPromotion	FrenchPromotionType	Promotion type in French	Тип акции на французском
+DimPromotion	EnglishPromotionCategory	Promotion category in English: Customer, Reseller	Категория акции на английском: клиентская, дилерская
+DimPromotion	SpanishPromotionCategory	Promotion category in Spanish	Категория акции на испанском
+DimPromotion	FrenchPromotionCategory	Promotion category in French	Категория акции на французском
+DimPromotion	StartDate	Promotion start date	Дата начала акции
+DimPromotion	EndDate	Promotion end date	Дата окончания акции
+DimPromotion	MinQty	Minimum quantity to qualify	Минимальное количество для участия
+DimPromotion	MaxQty	Maximum quantity allowed	Максимально допустимое количество

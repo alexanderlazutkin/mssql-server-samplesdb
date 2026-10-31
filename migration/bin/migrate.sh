@@ -13,6 +13,16 @@ phase_restore() { stamp "phase 1/6: restore AdventureWorksDW2019"; ./migration/b
 phase_export()  { stamp "phase 2/6: export CSV"; ./migration/bin/02_export_csv.sh; }
 phase_ddl()     { stamp "phase 3/6: generate DDL"; python3 migration/bin/03_gen_ddl.py; }
 phase_load()    { stamp "phase 4/6: load DuckDB"; ./migration/.venv/bin/python migration/bin/04_load_duckdb.py; }
+phase_comments_en() {
+  stamp "phase: comments EN"
+  ./migration/.venv/bin/python migration/bin/06_gen_comments.py
+  ./migration/.venv/bin/python migration/bin/07_apply_comments.py migration/aw_dw2019.duckdb migration/ddl/aw_dw2019_comments_en.sql
+}
+phase_comments_ru() {
+  stamp "phase: comments RU"
+  cp -f migration/aw_dw2019.duckdb migration/aw_dw2019_ru.duckdb
+  ./migration/.venv/bin/python migration/bin/07_apply_comments.py migration/aw_dw2019_ru.duckdb migration/ddl/aw_dw2019_comments_ru.sql
+}
 phase_verify()  { stamp "phase 5/6: verify"; ./migration/.venv/bin/python migration/bin/05_verify.py; }
 phase_archive() {
   stamp "phase 6/6: archive CSV"
@@ -28,6 +38,8 @@ case "${1:-all}" in
   export) phase_export ;;
   ddl) phase_ddl ;;
   load) phase_load ;;
+  comments-en) phase_comments_en ;;
+  comments-ru) phase_comments_ru ;;
   verify) phase_verify ;;
   archive) phase_archive ;;
   all)
@@ -35,13 +47,15 @@ case "${1:-all}" in
     phase_export
     phase_ddl
     phase_load
+    phase_comments_en
+    phase_comments_ru
     phase_verify
     phase_archive
     stamp "migration complete, stopping container"
     docker compose stop
     ;;
   *)
-    echo "usage: $0 {restore|export|ddl|load|verify|archive|all}" >&2
+    echo "usage: $0 {restore|export|ddl|load|comments-en|comments-ru|verify|archive|all}" >&2
     exit 1
     ;;
 esac
