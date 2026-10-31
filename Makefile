@@ -3,7 +3,7 @@
 #    Linkedin: https://www.linkedin.com/in/enriquecatala/
 #    Support:  https://github.com/sponsors/enriquecatala
 
-.PHONY: create-local-directories download-databases download-all-databases prerequisites build start all clean
+.PHONY: create-local-directories download-databases download-all-databases prerequisites build start all clean migrate migrate-verify
 
 # Step 1: Create local directories
 create-local-directories:
@@ -45,4 +45,12 @@ clean:
 	sudo rm -rf ./Backups/AdventureWorks*
 	sudo rm -rf ./Backups/WideWorldImporters*
 	sudo rm -rf ./local_mountpoint/
+
+migrate:
+	@echo "Full pipeline: SQL Server AdventureWorksDW2019 -> CSV -> DuckDB..."
+	./migration/bin/migrate.sh all
+
+migrate-verify:
+	@echo "Verifying migration (row counts + aggregates)..."
+	./migration/.venv/bin/python migration/bin/05_verify.py
 

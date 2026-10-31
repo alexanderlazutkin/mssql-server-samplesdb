@@ -42,6 +42,7 @@ Connect to your SQL Server instance at `localhost,14330` using `sa` and `PaSSw0r
 
 **Table of Contents:**
 - [mssql-server-samplesdb](#mssql-server-samplesdb)
+  - [Migration: AdventureWorksDW2019 → DuckDB](migration/MIGRATION.md)
   - [Quick Start](#quick-start)
   - [Features](#features)
   - [Installation](#installation)

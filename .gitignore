@@ -4,3 +4,12 @@ Backups/*
 !Backups/Northwind.bak
 !Backups/Pubs.bak
 config.log
+
+# migration artifacts
+migration/.venv/
+migration/csv/
+migration/*.duckdb
+migration/logs/*.log
+*.bak
+.vs/
+*.suo
